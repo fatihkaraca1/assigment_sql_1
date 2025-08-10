@@ -1,0 +1,28 @@
+Soru 1:Invoice tablosunda, tüm değerleri NULL olan kayıtların sayısını bulmanız isteniyor. 
+Bu işlemi tek bir sorgu ile yapmalısınız. Sorguyu yazdıktan sonra, PostgreSQL’in sol alt kısmındaki 
+Row sayısını, SQL sorgunuzda yorum satırında belirtmeniz gerekmektedir. 
+
+* soruda invoice tablosundaki null değerlerin sayısını bulmamız isteniyor. invoice tablosunun DDL yapısını incelediğimizde invoice_id, customer_id,
+invoice_date, total sütunları zaten NOT NULL olrak tanımlanmış. select count * ile invoice tablosundaki null sayısını, as parametresi ile null alabilen sutunlar
+takma adına sahip kolona yazdırabiliyoruz. 
+
+
+
+Soru 2: Koordinasyondaki kişiler, Total değerlerinde bir hata olduğunu belirtiyorlar.
+Bu değerlerin iki katını görmek ve eski versiyonlarıyla birlikte karşılaştırmak 
+için bir sorgu yazmanız isteniyor. Ayrıca, verilerin daha rahat takip edilebilmesi için, 
+tablonun yeni versiyonuna ait kolona göre küçükten büyüğe sıralama yapılması isteniyor. 
+
+* soruda sadece total kolonuna odaklanmamız gerekiyor. halihazırdaki total sütunundaki verileri as eski eski total ismiyle saklıyoruz. 
+Daha sonra bizden istenildiği gibi iki katı ile çarpıp as yeni total ismiyle tutuyoruz. select from diğer stun isimleri ile beraber tüm tablo yapısını
+da beraberinde getiriyoruz. en sonunda küçükten büyüğe sıralama operatörü order by yeni total asc ile sıralama yapıyoruz. 
+
+
+
+Soru 3: Adres kolonundaki verileri, soldan 3 karakter ve sağdan 4 karakter alarak birleştirmeniz ve "Açık Adres" olarak yazmanız isteniyor.
+Ayrıca, bu yeni açık adresi 2013 yılı ve 10. ay’a göre filtrelemeniz gerekiyor. 
+
+* soruda ilk önce soldan 3 karakter ve sağdan 4 karakter alarak birleştirerek açık adres olarka kaydedilmek isteniyor. concat metinleri uç uca 
+eklemeye yarar. LEFT ve RİGHT ile istenilen birleştirmeyi yapıyoruz ve bu veriyi as parametresi ile açık adres takma adındaki stunda tutuyoruz. 
+ayrıca istenilen tarih filtrelemesini exract (year from ..) ve exract (month from ..) ile yapıyoruz. son olarak birleştirme yapacağımız adresin boş
+olmamasına dikkat etmek için billing_adres sütunun is not null ile kontrol ediyoruz. 

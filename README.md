@@ -1,1 +1,1 @@
-# assigment_sql_1
+# Digitallency Staj Programı Ödev 1
